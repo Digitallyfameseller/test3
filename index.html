@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digitallyfame</title>
+  <meta name="description" content="Trusted by more than 30k+ customers. Buy original games, software, OTP services at best prices from DigitallyFame Store. Fast delivery, genuine products.">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Poppins', sans-serif; margin: 0; background: #f1f1f1; }
+    header { background: #00BFFF; color: white; padding: 10px; display: flex; justify-content: space-between; align-items: center; }
+    header h1 { margin: 0; font-size: 20px; }
+
+    .search-cart { display: flex; align-items: center; gap: 10px; }
+    .search-cart input {
+      padding: 5px 8px; border-radius: 20px; border: none; font-size: 13px; width: 110px;
+    }
+    .search-cart button {
+      background: white; color: #25d366; border: none; border-radius: 50%; padding: 8px 12px;
+      cursor: pointer; font-size: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .search-cart button:hover { background: #f1f1f1; }
+
+    .live-orders { background: red; color: white; padding: 12px; text-align: center; font-weight: 600; font-size: 15px; animation: fadeinout 5s infinite; }
+    @keyframes fadeinout { 0%,100%{opacity:0;} 50%{opacity:1;} }
+
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; padding: 20px; }
+    .product { background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: center; transition: transform 0.3s; }
+    .product:hover { transform: translateY(-5px); }
+    .product img { width: 100%; border-top-left-radius: 10px; border-top-right-radius: 10px; }
+    .product h3 { margin: 10px 0 0; font-size: 18px; }
+    .product p { margin: 0 0 10px; color: #555; }
+    .product button { margin-bottom: 15px; background: #25d366; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 15px; }
+    .product button:hover { background: #128c7e; }
+
+    #viewCartBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #25d366;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    #viewCartBtn:hover { background: #128c7e; }
+
+    #cartModal {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5); text-align: center; padding-top: 50px; z-index: 999;
+    }
+    #cartModalContent {
+      background: white; margin: auto; padding: 20px; width: 90%; max-width: 400px;
+      border-radius: 10px; text-align: left;
+    }
+    #cartModalContent h3 { margin-top: 0; }
+    #cartModalContent input { width: 100%; padding: 10px; margin: 5px 0; border-radius: 5px; border: 1px solid #ccc; }
+    #cartModalContent button {
+      background: #25d366; color: white; border: none; padding: 10px 15px;
+      margin: 5px; border-radius: 5px; cursor: pointer;
+    }
+    #cartModalContent button:hover { background: #128c7e; }
+
+    footer { background: #25d366; color: white; text-align: center; padding: 12px; margin-top: 30px; font-size: 14px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>DigitallyFame</h1>
+    <div class="search-cart">
+  <input type="text" id="searchInput" placeholder="Search..." onkeyup="filterProducts()">
+  <button onclick="showCart()" id="cartIcon" style="position: relative;">
+    🛒<span id="cartCount" style="background:red;color:white;border-radius:50%;padding:2px 6px;font-size:11px;position:absolute;top:-5px;right:-10px;display:none;">0</span>
+  </button>
+</div>
+
+  </header>
+
+  <div class="live-orders">Loading recent orders...</div>
+
+  <div class="product-grid" id="productGrid">
+ <div class="product"><h3>Growthfollows SMM Panel Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('Growthfollows SMM Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>Rentalpanel SMM Panel Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('Rentalpanel SMM Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>Resellerboost SMM Panel Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('Resellerboost SMM Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>New letest SMM Panel Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('New letest SMM Panel Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>Yellowperfect SMM Panel Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('Yellowperfect SMM Panel Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>Superrank SMM Panel Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('Superrank SMM Panel Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>Tech Smm Panel Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('Tech Smm Panel Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>Cloutsy SMM Panel Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('Cloutsy SMM Panel Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>Vega SMM Panel Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('Vega SMM Panel Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>Smmgen Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('Smmgen Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>QuickPanel SMM Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('QuickPanel SMM Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>Smartpanel SMM Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('Smartpanel SMM Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>Boss SMM Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('Boss SMM Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>Ruby SMM Panel Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('Ruby SMM Panel Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>Matrix SMM Panel Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('Matrix SMM Panel Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>SunSmm Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('SunSmm Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>OSP Panel SMM Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('OSP Panel SMM Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>Perfect Panel SMM Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('Perfect Panel SMM Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>Cloutsy SMM Panel Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('Cloutsy SMM Panel Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>Dark SMM Panel Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('Dark SMM Panel Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>Noba SMM Panel Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('Noba SMM Panel Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>Rocket SMM Panel Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('Rocket SMM Panel Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>Sps Dark SMM Panel Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('Sps Dark SMM Panel Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>Top SMM Panel Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('Top SMM Panel Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>Honest SMM Panel Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('Honest SMM Panel Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>Rok SMM Panel Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('Rok SMM Panel Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>Crown SMM Panel Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('Crown SMM Panel Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>Bharathost SMM Panel Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('Bharathost SMM Panel Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>White SMM Panel Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('White SMM Panel Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>Dream SMM Panel Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('Dream SMM Panel Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>Indian SMM Panel Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('Indian SMM Panel Script', 59)">Add to Cart</button></div>
+<div class="product"><h3>Closestart SMM Panel Script</h3><p>Original Script – ₹59</p><button onclick="addToCart('Closestart SMM Panel Script', 59)">Add to Cart</button></div>
+
+  </div>
+
+  <button id="viewCartBtn" onclick="showCart()">View Cart 🛒</button>
+
+  <div id="cartModal">
+    <div id="cartModalContent">
+      <h3>Your Cart</h3>
+      <div id="cartItems"></div>
+      <p><strong>Total: ₹<span id="cartTotal">0</span></strong></p>
+      <button onclick="checkout()">Checkout on WhatsApp ✅</button>
+      <button onclick="closeCart()">Close</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 DigitallyFame. All Rights Reserved</p>
+  </footer>
+
+  <script>
+    let cartItems = [];
+    let discount = 0;
+
+    function addToCart(product, price) {
+      cartItems.push({product, price});
+      alert(`${product} added to cart!`);
+      document.getElementById('viewCartBtn').style.display = 'block';
+    }
+
+    function showCart() {
+      const cartItemsDiv = document.getElementById('cartItems');
+      cartItemsDiv.innerHTML = "";
+      let total = 0;
+      cartItems.forEach((item, i) => {
+        cartItemsDiv.innerHTML += `<p>${i+1}. ${item.product} – ₹${item.price}</p>`;
+        total += item.price;
+      });
+      total -= discount;
+      document.getElementById('cartTotal').innerText = total >= 0 ? total : 0;
+      document.getElementById('cartModal').style.display = 'block';
+    }
+
+    function closeCart() {
+      document.getElementById('cartModal').style.display = 'none';
+    }
+
+    function applyCoupon() {
+      const code = document.getElementById('coupon').value.trim().toUpperCase();
+      if(code == "DF100") {
+        discount = 100;
+        alert("₹100 coupon applied!");
+      } else {
+        discount = 0;
+        alert("Invalid coupon!");
+      }
+      showCart();
+    }
+
+    function checkout() {
+      let message = `*DigitallyFame Order*%0A`;
+      cartItems.forEach((item,i)=>{
+        message += `${i+1}. ${item.product} – ₹${item.price}%0A`;
+      });
+      let total = cartItems.reduce((sum,i)=>sum+i.price,0) - discount;
+      message += `*Discount: ₹${discount}*%0A*Total: ₹${total >= 0 ? total : 0}*`;
+      window.open(`https://wa.me/380971290559?text=${message}`,'_blank');
+    }
+
+    function filterProducts() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const products = document.getElementsByClassName("product");
+      Array.from(products).forEach(prod => {
+        const title = prod.getElementsByTagName("h3")[0].innerText.toLowerCase();
+        prod.style.display = title.includes(input) ? "" : "none";
+      });
+    }
+
+    // Fake customer updates
+    const customers = ["Rahul from Delhi", "Aman from Mumbai", "Priya from Bangalore", "Ankit from Lucknow",
+  "Neha from Jaipur", "Vikram from Pune", "Rohit from Surat", "Simran from Chandigarh",
+  "Sahil from Patna", "Kiran from Bhopal", "Deepak from Kanpur", "Swati from Indore",
+  "Nikhil from Nagpur", "Pooja from Noida", "Anjali from Gurugram", "Manoj from Hyderabad",
+  "Sneha from Ahmedabad", "Ravi from Thane", "Jyoti from Ludhiana", "Gaurav from Agra",
+  "Raj from Kolkata", "Kunal from Amritsar", "Tanvi from Jodhpur", "Divya from Raipur",
+  "Akash from Ranchi", "Megha from Jabalpur", "Sunil from Gwalior", "Aarti from Meerut",
+  "Mohit from Varanasi", "Sheetal from Ghaziabad", "Yash from Faridabad", "Komal from Kochi",
+  "Paras from Mysore", "Ruchi from Coimbatore", "Himanshu from Vadodara", "Payal from Rajkot",
+  "Shivam from Visakhapatnam", "Nisha from Madurai", "Abhishek from Salem", "Muskan from Trichy",
+  "Tushar from Udaipur", "Diksha from Ajmer", "Arjun from Bikaner", "Isha from Aligarh",
+  "Ramesh from Moradabad", "Kavita from Saharanpur", "Pradeep from Bareilly", "Bhavna from Haridwar",
+  "Nitin from Dehradun", "Riya from Panipat", "Sandeep from Bhilai", "Hemant from Hisar",
+  "Reena from Karnal", "Dipti from Dhanbad", "Sonia from Gandhinagar", "Chirag from Ambala",
+  "Pratik from Rohtak", "Mahesh from Rewari", "Vikas from Sirsa", "Rajesh from Yamunanagar",
+  "Ganesh from Panchkula", "Sarita from Kurukshetra", "Bharat from Roorkee", "Snehal from Muzaffarnagar",
+  "Bhavesh from Saharsa", "Dhruv from Darbhanga", "Devansh from Begusarai", "Kishan from Katihar",
+  "Jignesh from Arrah", "Pritesh from Purnia", "Bansi from Hajipur", "Chaitali from Bettiah",
+  "Devika from Kishanganj", "Hetal from Sasaram", "Harsh from Siwan", "Kalpesh from Motihari",
+  "Ketan from Samastipur", "Krishna from Bhojpur", "Lavina from Buxar", "Mayur from Jamui",
+  "Mitali from Gaya", "Naina from Nalanda", "Nirav from Sheikhpura", "Pankaj from Lakhisarai",
+  "Prachi from Khagaria", "Prerna from Banka", "Rachna from Sheikhpura", "Rajni from Nawada",
+  "Sameer from Araria", "Sangeeta from Madhepura", "Sanjay from Supaul", "Sapna from Saharsa",
+  "Shreya from Darbhanga", "Sonal from Begusarai", "Sumit from Purnia", "Suraj from Katihar",
+  "Tina from Arrah", "Urvashi from Motihari", "Vandana from Samastipur", "Varsha from Bhojpur",
+  "Vinay from Buxar", "Jay from Jamui", "Hardik from Gaya", "Jaya from Nalanda",
+  "Payal from Sheikhpura", "Kirti from Lakhisarai", "Dev from Khagaria", "Rekha from Banka",
+  "Neeraj from Sheikhpura", "Monika from Nawada", "Ashok from Araria", "Geeta from Madhepura",
+  "Tarun from Supaul", "Vidya from Saharsa", "Amar from Darbhanga", "Irfan from Begusarai",
+  "Farhan from Purnia", "Zoya from Katihar", "Nasir from Arrah", "Shazia from Motihari",
+  "Faisal from Samastipur", "Iqbal from Bhojpur", "Wasim from Buxar", "Parvez from Jamui",
+  "Nazma from Gaya", "Saba from Nalanda", "Rubina from Sheikhpura", "Shabana from Lakhisarai",
+  "Imran from Khagaria", "Ayesha from Banka", "Nausheen from Sheikhpura", "Shakeel from Nawada",
+  "Nadeem from Araria", "Shahid from Madhepura", "Tabassum from Supaul", "Sahir from Saharsa",
+  "Arif from Darbhanga", "Razia from Begusarai", "Tanveer from Purnia", "Shamim from Katihar",
+  "Salman from Arrah", "Parveen from Motihari", "Hina from Samastipur", "Ruksana from Bhojpur",
+  "Afzal from Buxar", "Sabir from Jamui", "Farida from Gaya", "Dilshad from Nalanda",
+  "Sultan from Jaipur", "Ritu from Udaipur", "Jeet from Barmer", "Lalit from Bikaner",
+  "Jasmin from Jodhpur", "Preeti from Kota", "Saurabh from Ajmer", "Rajveer from Alwar",
+  "Rashmi from Bhilwara", "Govind from Sikar", "Meenakshi from Jhunjhunu", "Harish from Sawai Madhopur",
+  "Bhanu from Dausa", "Harmeet from Bharatpur", "Puneet from Tonk", "Asha from Karauli",
+  "Rajendra from Dholpur", "Santosh from Bundi", "Manisha from Pali", "Naresh from Jalore"];
+    function updateCustomerName() {
+      const customer = customers[Math.floor(Math.random() * customers.length)];
+      document.querySelector('.live-orders').innerHTML = `${customer} placed an order`;
+    }
+    document.addEventListener("DOMContentLoaded", () => {
+      updateCustomerName();
+      setInterval(updateCustomerName, 5000);
+    });
+  </script>
+
+</body>
+</html>
